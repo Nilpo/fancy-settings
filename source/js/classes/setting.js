@@ -230,6 +230,54 @@
         }
     });
     
+    Bundle.Textarea = new Class({
+        // label, text
+        // action -> change & keyup
+        "Extends": Bundle,
+        
+        "createDOM": function () {
+            this.bundle = new Element("div", {
+                "class": "setting bundle textarea"
+            });
+            
+            this.container = new Element("div", {
+                "class": "setting container textarea"
+            });
+            
+            this.element = new Element("textarea", {
+                "class": "setting element textarea"
+            });
+            
+            this.label = new Element("label", {
+                "class": "setting label textarea"
+            });
+        },
+        
+        "setupDOM": function () {
+            if (this.params.label !== undefined) {
+                this.label.set("html", this.params.label);
+                this.label.inject(this.container);
+                this.params.searchString += this.params.label + "•";
+            }
+            
+            this.element.inject(this.container);
+            this.container.inject(this.bundle);
+        },
+        
+        "addEvents": function () {
+            var change = (function (event) {
+                if (this.params.name !== undefined) {
+                    settings.set(this.params.name, this.get());
+                }
+                
+                this.fireEvent("action", this.get());
+            }).bind(this);
+            
+            this.element.addEvent("change", change);
+            this.element.addEvent("keyup", change);
+        }
+    });
+    
     Bundle.Checkbox = new Class({
         // label
         // action -> change
@@ -676,6 +724,68 @@
         }
     });
     
+	Bundle.Number = new Class({
+        // label, min, max, step
+        // action -> change & keyup & input
+	    "Extends": Bundle,
+	    
+	    "createDOM": function () {
+	        this.bundle = new Element("div", {
+	            "class": "setting bundle number"
+	        });
+	        
+	        this.container = new Element("div", {
+	            "class": "setting container number"
+	        });
+	        
+	        this.element = new Element("input", {
+	            "class": "setting element number",
+	            "type": "number"
+	        });
+	        
+	        this.label = new Element("label", {
+	            "class": "setting label number"
+	        });
+	    },
+	    
+	    "setupDOM": function () {
+	        if (this.params.label !== undefined) {
+	            this.label.set("html", this.params.label);
+	            this.label.inject(this.container);
+	            this.params.searchString += this.params.label + "•";
+	        }
+
+            if (this.params.min !== undefined) {
+                this.element.set("min", this.params.min);
+            }
+
+            if (this.params.max !== undefined) {
+                this.element.set("max", this.params.max);
+            }
+
+            if (this.params.step !== undefined) {
+                this.element.set("step", this.params.step);
+            }
+
+	        this.element.inject(this.container);
+	        this.container.inject(this.bundle);
+	    },
+	    
+	    "addEvents": function () {
+	        var change = (function (event) {
+	            if (this.params.name !== undefined) {
+	                settings.set(this.params.name, this.get());
+	            }
+	            
+	            this.fireEvent("action", this.get());
+	        }).bind(this);
+	        
+	        this.element.addEvent("change", change);
+	        this.element.addEvent("keyup", change);
+	        this.element.addEvent("input", change);
+	    }
+	});
+    
     this.Setting = new Class({
         "initialize": function (container) {
             this.container = container;
@@ -695,7 +805,8 @@
                 "slider": "Slider",
                 "popupButton": "PopupButton",
                 "listBox": "ListBox",
-                "radioButtons": "RadioButtons"
+                "radioButtons": "RadioButtons",
+                "number": "Number"
             };
             
             if (types.hasOwnProperty(params.type)) {

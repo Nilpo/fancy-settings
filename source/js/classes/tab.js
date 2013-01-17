@@ -13,9 +13,15 @@
             this.content = new Element("div", {"class": "tab-content"});
             
             // Create event handlers
-            this.tab.addEvent("click", this.activate.bind(this));
+            this.tab.addEvent("click", this.click.bind(this));
         },
         
+		"click": function()
+		{
+			location.hash = this.tab.innerText;
+			this.activate();
+		},
+		
         "activate": function () {
             if (this.creator.activeBundle && this.creator.activeBundle !== this) {
                 this.creator.activeBundle.deactivate();

@@ -4,6 +4,7 @@
 * **Feature**: Added version number to README file
 * **Feature**: Added CHANGELOG
 * **Feature**: Added alignment support
+* **Feature**: Added support for linking to specific tabs
 * **Change**: Removed the possibility to use objects to define options for elements other than popupButton
 * **Change**: Added support for option groups in popupButtons, changing the format when defining options as objects
 * **Change**: Changed the default value of "display" in the slider params from true to false

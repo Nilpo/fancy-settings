@@ -119,7 +119,16 @@ this.manifest = {
                 ["hot", "Hot and yummy"],
                 ["cold"]
             ]
-        }
+        },
+        {
+            "tab": "Details",
+            "group": "Food",
+            "name": "deserts",
+            "type": "number",
+            "min": 0,
+            "max": 5,
+            "label": "Number of deserts"
+        },
     ],
     "alignment": [
         [
