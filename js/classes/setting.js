@@ -211,7 +211,7 @@
         "addEvents": function () {
             var change = (function (event) {
                 if (this.params.name !== undefined) {
-                    settings.set(this.params.name, this.get());
+                    settings.set(this.params.name, this.get(), this.params.masked);
                 }
                 
                 this.fireEvent("action", this.get());
