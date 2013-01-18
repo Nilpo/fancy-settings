@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.0
+Feature: chrome.storage.sync support
+Feature: queue to reduce storage calls
+Feature: syncronous access to chrome.storage after initialization
+Change: moved everything up one directory level
+
 ## v1.2 [ API CHANGE! ]
 * **Feature**: Added version number to README file
 * **Feature**: Added CHANGELOG
