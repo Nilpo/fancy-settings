@@ -7,7 +7,7 @@
     var settings,
         Bundle;
     
-    settings = new Store("settings");
+    settings = new StoreSync("settings");
     Bundle = new Class({
         // Attributes:
         // - tab
@@ -42,7 +42,7 @@
         "addEvents": function () {
             this.element.addEvent("change", (function (event) {
                 if (this.params.name !== undefined) {
-                    settings.set(this.params.name, this.get());
+                    settings.set(this.params.name, this.get(), !this.params.sync);
                 }
                 
                 this.fireEvent("action", this.get());
@@ -211,7 +211,7 @@
         "addEvents": function () {
             var change = (function (event) {
                 if (this.params.name !== undefined) {
-                    settings.set(this.params.name, this.get(), this.params.masked);
+                    settings.set(this.params.name, this.get(), !this.params.sync);
                 }
                 
                 this.fireEvent("action", this.get());
@@ -259,7 +259,7 @@
         "addEvents": function () {
             var change = (function (event) {
                 if (this.params.name !== undefined) {
-                    settings.set(this.params.name, this.get());
+                    settings.set(this.params.name, this.get(), !this.params.sync);
                 }
                 
                 this.fireEvent("action", this.get());
@@ -402,7 +402,7 @@
         "addEvents": function () {
             this.element.addEvent("change", (function (event) {
                 if (this.params.name !== undefined) {
-                    settings.set(this.params.name, this.get());
+                    settings.set(this.params.name, this.get(), !this.params.sync);
                 }
                 
                 if (this.params.displayModifier !== undefined) {
@@ -631,7 +631,7 @@
         "addEvents": function () {
             this.bundle.addEvent("change", (function (event) {
                 if (this.params.name !== undefined) {
-                    settings.set(this.params.name, this.get());
+                    settings.set(this.params.name, this.get(), !this.params.sync);
                 }
                 
                 this.fireEvent("action", this.get());
@@ -709,7 +709,7 @@
 	    "addEvents": function () {
 	        var change = (function (event) {
 	            if (this.params.name !== undefined) {
-	                settings.set(this.params.name, this.get());
+	                settings.set(this.params.name, this.get(), !this.params.sync);
 	            }
 	            
 	            this.fireEvent("action", this.get());
